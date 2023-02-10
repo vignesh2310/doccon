@@ -7,7 +7,7 @@ services:
     volumes:
       - volsqldata:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASWORD: dbpass
+      - MYSQL_ROOT_PASWORD=dbpass
 
   memcache01:
     image: memcached
