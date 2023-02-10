@@ -1,0 +1,39 @@
+version: '3'
+services:
+  sqldb:
+    image: vignesh22310/sqldb
+    ports: 
+      - "3306:3306"
+    volumes:
+      - volsqldata:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASWORD: dbpass
+
+  memcache01:
+    image: memcached
+    ports:
+      - "11211:11211"
+
+  rmq01:
+    image: rabbitmq
+    ports:
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER: guest
+      - RABBITMQ_DEFAULT_PASS: guest
+
+  tomapp:
+    image: vignesh22310/tomapp
+    ports:
+      - "8080:8080"
+    volumes:
+      - voltomappdata:/usr/local/tomcat/webapps
+
+  nginxweb:
+    image: vignesh22310/ngiweb
+    ports:
+      - "80:80"      
+
+volumes:
+  volsqldata: {}
+  voltomappdata: {}
