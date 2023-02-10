@@ -1,0 +1,9 @@
+FROM tomcat:8-jre11
+LABEL "project"="dockertest"
+LABEL "author"="vicky"
+RUN rm -rf /usr/local/tomcat/webapps/*
+COPY target/dockerv1.war /usr/local/tomcat/webapps/ROOT.war
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
+WORKDIR /usr/local/tomcat/
+VOLUME /usr/local/tomcat/webapps
